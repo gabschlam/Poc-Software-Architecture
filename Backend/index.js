@@ -10,7 +10,6 @@ app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
 var port = process.env.PORT || 3000; ///puerto disponible
 
 var uri = 'mongodb+srv://arquitectura_user:admin123@cluster0.f9acl.gcp.mongodb.net/softwareArchitecture?retryWrites=true&w=majority';

@@ -23,9 +23,5 @@ export class LoginService {
             password : user.password
         })
     }
-
-    getUser() {
-      return localStorage.getItem('idUser');
-    }
  
 }

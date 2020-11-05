@@ -1,0 +1,53 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+    <br>
+    <br>
+    <div class="row justify-content">
+        <div class="col-10 p-4">
+          <h1 class="display-3" >Agendar salón</h1>
+          <hr class="my-4" />
+        </div>
+      </div>
+      <div class="row justify-content pt-3">
+        <div class="col-lg-8 col-md-6 col-sm-10">
+          <div class="card">
+            <div class="card-body">
+              <form action="" ngNativeValidate>
+                <div class="form-group">
+                  <label >Salón:</label>
+
+                  <select name="salones" class="form-control" id="salones" required>
+                      <option disabled selected value> Selecciona un salón</option>
+                      <option value="A1-1402">A1-1402</option>
+                      <option value="A1-1403">A1-1403</option>
+                      <option value="A1-1404">A1-1404</option>
+                      <option value="A1-1405">A1-1405</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                    <label >Fecha: </label>
+                    <input type="date" class="form-control" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label >Hora: </label>
+                    <input type="time" class="form-control" id="appt" name="appt" min="09:00" max="18:00" required>
+                </div>
+                <div class="form-group">
+                    <label >Motivo de reserva:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="name"
+                      required
+                    />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" >
+                    Reservar salón
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+           
