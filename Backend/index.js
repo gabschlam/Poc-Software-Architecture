@@ -93,6 +93,42 @@ router
       res.status(400).send({error: "missing fields"})
     }
   })
+
+router
+  .route("/reservas")
+  .get(function (req, res) {
+    Booking.find({ }, function (err, reservas) {
+      if (err) {
+        res.send(err);
+        return;
+      }
+      res.status(200).send(reservas);
+    })
+  })
+  .delete(function (req, res) {
+    Booking.findById(req.body.bookingId, function (error, result) {
+      if (error) {
+        console.log(error)
+        res.status(404).send({ message: "not found" });
+        return;
+      }
+      if (result == null) {
+        res.status(404).send({ result: "not found" });
+        return;
+      }
+      else {
+        Booking.remove({_id: req.body.bookingId},
+          function (err) {
+            if (err) {
+              res.send(err);
+              return;
+            }
+            res.json({ mensaje: "Reserva eliminada con exito" });
+          }
+        );
+      }
+  });
+});
  
 app.use("/api", router); //url base de nuestro api que tiene las rutas en el routerglobal.fetch = require('node-fetch');
 router.use(function(req, res, next) {
