@@ -39,6 +39,7 @@ router.get("/", function (req, res) {
 
 // declarar los modelos
 var User = require('./model/user');
+var Booking = require("./model/booking");
 
 router
   .route('/login')
@@ -61,6 +62,37 @@ router
              
         })
     });
+
+router
+  .route("/reservar")
+  .post(async function (req, res) {
+    var reserva = new Booking();
+    if (req.body.userId && req.body.roomId && req.body.date && req.body.timeStart && req.body.timeEnd && req.body.concept) { 
+      reserva.userId = req.body.userId;
+      reserva.roomId = req.body.roomId;
+      reserva.date = req.body.date;
+      reserva.timeStart = req.body.timeStart;
+      reserva.timeEnd = req.body.timeEnd;
+      reserva.concept = req.body.concept;
+     
+      try {
+        await reserva.save(function (err) {
+          if (err) {
+            console.log(err);
+            if (err.name == "ValidationError")
+              res.status(400).send({ error: err.message });
+              return;
+          }
+        });
+        res.json({ mensaje: "Reserva creado" });
+      } catch (error) {
+        res.status(500).send({ error: error });
+      }  
+    }
+    else {
+      res.status(400).send({error: "missing fields"})
+    }
+  })
  
 app.use("/api", router); //url base de nuestro api que tiene las rutas en el routerglobal.fetch = require('node-fetch');
 router.use(function(req, res, next) {
