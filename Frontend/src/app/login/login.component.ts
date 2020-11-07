@@ -14,8 +14,11 @@ export class LoginComponent implements OnInit {
 
   public user : User;
  
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(private router: Router, private loginService: LoginService) {
     this.user = new User();
+    if (this.loginService.getUser() != null) {
+      this.router.navigate(['/home']);
+    }
 }
 
   ngOnInit(): void {
@@ -23,17 +26,7 @@ export class LoginComponent implements OnInit {
 
   validateLogin() {
     if(this.user.username && this.user.password) {
-        this.loginService.validateLogin(this.user).subscribe(result => {
-        console.log('result is ', result);
-        if(result['status'] === 'success') {
-          this.router.navigate(['/home']);
-        } else {
-          alert('Usuario o password incorrecto');
-        }
-         
-      }, error => {
-        console.log('error is ', error);
-      });
+        this.loginService.login(this.user);
     } else {
         alert('Ingresa usuario y password');
     }

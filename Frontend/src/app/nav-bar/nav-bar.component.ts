@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 
 @Component({
@@ -9,9 +10,15 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  logOut() {
+    alert('Sesion terminada');
+    localStorage.removeItem('idUser');
+    this.router.navigate(['/']);
   }
 
 }
