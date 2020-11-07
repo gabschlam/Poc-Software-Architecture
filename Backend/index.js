@@ -98,7 +98,8 @@ router
 router
   .route("/reservas")
   .get(function (req, res) {
-    Booking.find({ }, function (err, reservas) {
+    console.log(req.query);
+    Booking.find({userId : req.query.idUser }, function (err, reservas) {
       if (err) {
         res.send(err);
         return;
@@ -107,6 +108,7 @@ router
     })
   })
   .delete(function (req, res) {
+    console.log(req.body);
     Booking.findById(req.body.bookingId, function (error, result) {
       if (error) {
         console.log(error)
@@ -130,6 +132,19 @@ router
       }
   });
 });
+
+router
+  .route("/reserva")
+  .get(function (req, res) {
+    console.log(req.query);
+    Booking.findById(req.query.bookingId, function (err, reserva) {
+      if (err) {
+        res.send(err);
+        return;
+      }
+      res.status(200).send(reserva);
+    })
+  })
 
 router
   .route("/salones")

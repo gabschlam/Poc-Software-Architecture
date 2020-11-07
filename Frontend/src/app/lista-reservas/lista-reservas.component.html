@@ -14,49 +14,20 @@
                 <tr>
                     <th>Salón</th>
                     <th>Fecha</th>
-                    <th>Hora</th>
+                    <th>Hora de Inicio</th>
+                    <th>Hora de Fin</th>
                     <th>Concepto</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor="let reserva of allReservas; let i = index">
                 <tr>
-                    <td>A1-1402</td>
-                    <td>06/11/2020</td>
-                    <td>12:30</td>
-                    <td>Uso personal</td>
+                    <td>{{reserva.roomId}}</td>
+                    <td>{{reserva.date}}</td>
+                    <td>{{reserva.timeStart}}</td>
+                    <td>{{reserva.timeEnd}}</td>
+                    <td>{{reserva.concept}}</td>
                     <td>
-                        <a href="" class="btn btn-primary text-right">Editar</a>
-                        <a href="" class="btn btn-danger text-right">Eliminar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>A1-1404</td>
-                    <td>07/11/2020</td>
-                    <td>12:30</td>
-                    <td>Uso personal</td>
-                    <td>
-                        <a href="" class="btn btn-primary text-right">Editar</a>
-                        <a href="" class="btn btn-danger text-right">Eliminar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>A1-1402</td>
-                    <td>08/11/2020</td>
-                    <td>12:30</td>
-                    <td>Uso personal</td>
-                    <td>
-                        <a href="" class="btn btn-primary text-right">Editar</a>
-                        <a href="" class="btn btn-danger text-right">Eliminar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>A1-1404</td>
-                    <td>09/11/2020</td>
-                    <td>12:30</td>
-                    <td>Uso personal</td>
-                    <td>
-                        <a href="" class="btn btn-primary text-right">Editar</a>
-                        <a href="" class="btn btn-danger text-right">Eliminar</a>
+                        <button (click)="deleteReserva(reserva._id)" class="btn btn-danger text-right">Eliminar</button>
                     </td>
                 </tr>
             </tbody>

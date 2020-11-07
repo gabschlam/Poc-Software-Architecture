@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/User';
 import { Router } from '@angular/router';
 
-const endpoint = 'http://localhost:3000/';
+const endpoint = 'http://localhost:3000/api/';
 
 @Injectable()
 export class LoginService {
@@ -18,18 +18,10 @@ export class LoginService {
 
     constructor(private router: Router, private http: HttpClient) { }
 
-     
-    validateLogin(user: User){
-        return this.http.post(endpoint + 'api/login',{
-            username : user.username,
-            password : user.password
-        })
-    }
-
     login(user: User) {  
       if (localStorage.getItem('idUser') === null || localStorage.getItem('idUser') === undefined){
 
-        this.http.post(endpoint + 'api/login', user).subscribe(result => {
+        this.http.post(endpoint + 'login', user).subscribe(result => {
           console.log(result);
           if(result['status'] === 'success') {
             this.usr = result['data'];
