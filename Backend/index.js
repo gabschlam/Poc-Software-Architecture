@@ -40,6 +40,7 @@ router.get("/", function (req, res) {
 // declarar los modelos
 var User = require('./model/user');
 var Booking = require("./model/booking");
+var Room = require("./model/room");
 
 router
   .route('/login')
@@ -129,6 +130,18 @@ router
       }
   });
 });
+
+router
+  .route("/salones")
+  .get(function (req, res) {
+    Room.find({ }, function (err, salones) {
+      if (err) {
+        res.send(err);
+        return;
+      }
+      res.status(200).send(salones);
+    })
+  })
  
 app.use("/api", router); //url base de nuestro api que tiene las rutas en el routerglobal.fetch = require('node-fetch');
 router.use(function(req, res, next) {
