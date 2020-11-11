@@ -105,7 +105,7 @@ router
         return;
       }
       res.status(200).send(reservas);
-    })
+    }).sort({ date: 1, timeStart: 1 });
   })
   .delete(function (req, res) {
     console.log(req.body);
@@ -155,7 +155,7 @@ router
         return;
       }
       res.status(200).send(salones);
-    })
+    }).sort({ roomId: 1 });
   })
  
 app.use("/api", router); //url base de nuestro api que tiene las rutas en el routerglobal.fetch = require('node-fetch');
