@@ -16,17 +16,22 @@ export class ReservarComponent implements OnInit {
   allSalones: any;
   public booking : Booking;
 
-  constructor(private router: Router, private reservasService: ReservasService) { 
+  constructor(private router: Router, private reservasService: ReservasService, private loginService: LoginService) { 
     this.booking = new Booking();
 
   }
 
   ngOnInit(): void {
-    this.reservasService.getSalones().subscribe(salones => {
-      console.log(salones);
-      this.allSalones = salones;
-
-    })
+    if(this.loginService.getUser() === null) {
+      this.router.navigate(['/']);
+    }
+    else {
+      this.reservasService.getSalones().subscribe(salones => {
+        console.log(salones);
+        this.allSalones = salones;
+  
+      })
+    }
   }
 
   agregarReserva(){
